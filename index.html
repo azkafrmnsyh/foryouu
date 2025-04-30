@@ -185,32 +185,45 @@
       margin: 1.5rem 0 2rem;
       white-space: normal;
       overflow-wrap: break-word;
-      border-right: none;
-      display: block;
+      border-radius: 0.5rem;
+      background: #fff0f6;
+      box-shadow: 0 4px 8px rgba(236, 72, 153, 0.3);
+      padding: 1rem 1.5rem;
       position: relative;
-      padding-left: 2rem;
-      padding-right: 2rem;
+      display: block;
+      border-right: none;
+      overflow: visible;
     }
     #popupCard > div p::before,
     #popupCard > div p::after {
-      content: '“';
       color: #ec4899;
       font-size: 3rem;
       position: absolute;
-      top: -0.8rem;
       font-weight: 900;
       font-family: serif;
       user-select: none;
       line-height: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #popupCard > div p::before {
+      content: '“';
+      left: 0.3rem;
+      top: 0.2rem;
+      transform: translate(-50%, -50%);
     }
     #popupCard > div p::after {
       content: '”';
-      right: 0.5rem;
+      right: 0.3rem;
+      bottom: 0.2rem;
       top: auto;
-      bottom: -0.8rem;
+      transform: translate(50%, 50%);
     }
-    #popupCard > div p::before {
-      left: 0.5rem;
+    #popupCard > div p.quotes-visible::before,
+    #popupCard > div p.quotes-visible::after {
+      opacity: 1;
     }
     #popupCard > div button {
       background-color: #3b82f6; /* blue-500 */
@@ -238,6 +251,19 @@
     }
     #popupCard > div button:hover {
       background-color: #2563eb; /* blue-600 */
+    }
+    /* Pink ribbon image decoration */
+    #popupCard > div .ribbon-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 70px;
+      height: 70px;
+      z-index: 10;
+      pointer-events: none;
+      user-select: none;
+      transform: rotate(-45deg);
+      transform-origin: top left;
     }
   </style>
 </head>
@@ -273,6 +299,7 @@
 
   <div id="popupCard" role="alert" aria-live="polite" aria-modal="true" tabindex="-1">
     <div>
+      <img src="https://i.ibb.co/3vQZqZP/pink-ribbon.png" alt="Pink ribbon decoration" class="ribbon-img" />
       <span id="popupTitle"></span>
       <p id="popupContent"></p>
       <button id="okBtn" type="button">oke!</button>
@@ -364,6 +391,8 @@
       okBtn.textContent = "";
       // Type popup content first
       await typeText(popupContent, popupContentText, 40);
+      // Show pink quotation marks after typing finished
+      popupContent.classList.add('quotes-visible');
       // Then show and type button text
       okBtn.classList.add('visible');
       await typeText(okBtn, okBtnText, 80);
@@ -390,6 +419,7 @@
         popupContentDiv.style.transform = '';
         popupTitle.textContent = '';
         popupContent.textContent = '';
+        popupContent.classList.remove('quotes-visible');
         okBtn.textContent = '';
         okBtn.classList.remove('visible');
       }, 300);
@@ -409,6 +439,7 @@
     popupTitle.textContent = "";
     popupContent.textContent = "";
     okBtn.classList.remove('visible');
+    popupContent.classList.remove('quotes-visible');
 
     showCardBtn.addEventListener('click', () => {
       openPopup();
