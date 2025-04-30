@@ -4,14 +4,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Birthday Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=More+Sugar&display=swap" rel="stylesheet" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
   />
   <style>
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'More Sugar', cursive;
       background-color: #f687b3; /* pink-400 */
       margin: 0;
       min-height: 100vh;
@@ -60,11 +60,18 @@
       color: white;
       font-size: 0.875rem;
       letter-spacing: 0.2em;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.50rem;
+    }
+
+    .birthday-name {
+      color: white;
+      font-size: 2rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
     }
     h1 {
       color: white;
-      font-size: 2rem;
+      font-size: 10rem;
       text-align: center;
       line-height: 1.2;
       margin-bottom: 1.5rem;
@@ -160,7 +167,7 @@
       max-width: 22rem;
       width: 100%;
       text-align: center;
-      font-family: 'Nunito', sans-serif;
+      font-family: 'More Sugar', cursive;
       font-size: 1.5rem;
       font-weight: 700;
       color: #ec4899; /* pink-500 */
@@ -193,6 +200,7 @@
       display: block;
       border-right: none;
       overflow: visible;
+      font-family: 'More Sugar', cursive;
     }
     #popupCard > div p::before,
     #popupCard > div p::after {
@@ -244,6 +252,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      font-family: 'More Sugar', cursive;
     }
     #popupCard > div button.visible {
       opacity: 1;
@@ -265,6 +274,47 @@
       transform: rotate(-45deg);
       transform-origin: top left;
     }
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.5rem;
+        white-space: normal;
+      }
+      .birthday-text {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+      }
+      .photo-card {
+        max-width: 100%;
+        padding: 0.75rem;
+      }
+      #showCardBtn {
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+      footer {
+        font-size: 0.625rem;
+        white-space: normal;
+      }
+      #popupCard > div {
+        max-width: 90vw;
+        padding: 1.5rem 1.75rem;
+        font-size: 1.25rem;
+      }
+      #popupCard > div p {
+        font-size: 0.9rem;
+        margin: 1rem 0 1.5rem;
+        padding: 0.75rem 1rem;
+      }
+      #popupCard > div button {
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+      }
+      #popupCard > div .ribbon-img {
+        width: 50px;
+        height: 50px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -282,7 +332,7 @@
 
   <main>
     <p class="birthday-text" id="birthdayText"></p>
-    <h1 id="birthdayName"></h1>
+    <h1 id="birthdayName" class="birthday-name"></h1>
     <div class="photo-card">
       <img
         src="https://storage.googleapis.com/a1aa/image/e36e8ced-0cb8-4ef5-cd2e-f4eef86cd292.jpg"
