@@ -47,7 +47,7 @@
       align-items: center;
       flex-grow: 1;
     }
-    .birthday-text, .footer-text, .photo-date, #popupCard p {
+    .birthday-text, .footer-text, .photo-date {
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
@@ -115,6 +115,13 @@
       display: inline-block;
       box-sizing: border-box;
       text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #showCardBtn.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
     #showCardBtn:hover {
       background-color: #5a6edc; /* darker blue */
@@ -158,10 +165,10 @@
       font-weight: 700;
       color: #ec4899; /* pink-500 */
       position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid transparent;
-      display: inline-block;
+      overflow: visible;
+      white-space: normal;
+      border-right: none;
+      display: block;
       box-sizing: border-box;
       opacity: 0;
       transform: translateY(30px);
@@ -177,9 +184,33 @@
       font-size: 1rem;
       margin: 1.5rem 0 2rem;
       white-space: normal;
-      overflow: visible;
+      overflow-wrap: break-word;
       border-right: none;
       display: block;
+      position: relative;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    #popupCard > div p::before,
+    #popupCard > div p::after {
+      content: '“';
+      color: #ec4899;
+      font-size: 3rem;
+      position: absolute;
+      top: -0.8rem;
+      font-weight: 900;
+      font-family: serif;
+      user-select: none;
+      line-height: 1;
+    }
+    #popupCard > div p::after {
+      content: '”';
+      right: 0.5rem;
+      top: auto;
+      bottom: -0.8rem;
+    }
+    #popupCard > div p::before {
+      left: 0.5rem;
     }
     #popupCard > div button {
       background-color: #3b82f6; /* blue-500 */
@@ -197,6 +228,13 @@
       display: inline-block;
       box-sizing: border-box;
       text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #popupCard > div button.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
     #popupCard > div button:hover {
       background-color: #2563eb; /* blue-600 */
@@ -237,9 +275,11 @@
     <div>
       <span id="popupTitle"></span>
       <p id="popupContent"></p>
-      <button id="okBtn" type="button"></button>
+      <button id="okBtn" type="button">oke!</button>
     </div>
   </div>
+
+  <audio id="birthdayAudio" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a7a7a3a3a.mp3?filename=happy-birthday-11254.mp3" preload="auto"></audio>
 
   <script>
     // Typing animation helper
@@ -282,6 +322,8 @@
     const popupContent = document.getElementById('popupContent');
     const okBtn = document.getElementById('okBtn');
 
+    const birthdayAudio = document.getElementById('birthdayAudio');
+
     // Text content
     const birthdayText = "HAPPY BIRTHDAY !!!!";
     const birthdayName = "Audilia Zoenita Rahman";
@@ -292,12 +334,17 @@
     const popupContentText = "This is the card content that appears when the button is clicked.";
     const okBtnText = "oke!";
 
+    // Initially hide the button
+    showCardBtn.classList.remove('visible');
+
     // Initial typing animations on page load
     async function introTyping() {
       await typeText(birthdayTextEl, birthdayText, 80);
       await typeText(birthdayNameEl, birthdayName, 120);
       fadeUp(birthdayNameEl, 600, 20);
       await typeText(photoDateEl, photoDate, 100);
+      // Show and type button only after previous typing finished
+      showCardBtn.classList.add('visible');
       await typeText(showCardBtn, buttonText, 100);
       await typeText(footerTextEl, footerText, 80);
     }
@@ -307,6 +354,7 @@
     async function openPopup() {
       popupCard.classList.add('show');
       popupCard.focus();
+      okBtn.classList.remove('visible');
       popupTitle.style.borderRight = "3px solid #ec4899";
       popupContent.style.borderRight = "none";
       okBtn.style.borderRight = "none";
@@ -314,13 +362,21 @@
       popupTitle.style.borderRight = "none";
       popupContent.textContent = "";
       okBtn.textContent = "";
-      // Type popup content and button text simultaneously
-      await Promise.all([
-        typeText(popupContent, popupContentText, 40),
-        typeText(okBtn, okBtnText, 80)
-      ]);
+      // Type popup content first
+      await typeText(popupContent, popupContentText, 40);
+      // Then show and type button text
+      okBtn.classList.add('visible');
+      await typeText(okBtn, okBtnText, 80);
       fadeUp(popupCard.querySelector('div'), 500, 30);
       showCardBtn.setAttribute('aria-expanded', 'true');
+
+      // Play music, handle promise for autoplay restrictions
+      if (birthdayAudio.paused) {
+        birthdayAudio.currentTime = 0;
+        birthdayAudio.play().catch(() => {
+          // Autoplay might be blocked, ignore error
+        });
+      }
     }
 
     function closePopup() {
@@ -335,16 +391,24 @@
         popupTitle.textContent = '';
         popupContent.textContent = '';
         okBtn.textContent = '';
+        okBtn.classList.remove('visible');
       }, 300);
       showCardBtn.setAttribute('aria-expanded', 'false');
       showCardBtn.focus();
+
+      // Pause music when popup closes
+      if (!birthdayAudio.paused) {
+        birthdayAudio.pause();
+        birthdayAudio.currentTime = 0;
+      }
     }
 
-    // Reset button text before typing to avoid overlap
+    // Reset text content initially
     showCardBtn.textContent = "";
     okBtn.textContent = "";
     popupTitle.textContent = "";
     popupContent.textContent = "";
+    okBtn.classList.remove('visible');
 
     showCardBtn.addEventListener('click', () => {
       openPopup();
