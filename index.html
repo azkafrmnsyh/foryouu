@@ -16,7 +16,7 @@
     <style>
       body {
         font-family: "More Sugar", cursive;
-        background-color: #FF90BC;
+        background-color: #ff90bc;
         margin: 0;
         min-height: 100vh;
         display: flex;
@@ -25,7 +25,7 @@
         position: relative;
       }
       header {
-        background-color: #8B93FF;
+        background-color: #8b93ff;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -43,7 +43,7 @@
       .nav p {
         margin: 0;
         font-size: 1rem;
-        color: #FFF7FC;
+        color: #fff7fc;
       }
 
       header img {
@@ -53,7 +53,7 @@
         object-fit: cover;
       }
       header button {
-        color: #FFF7FC;
+        color: #fff7fc;
         font-size: 1.5rem;
         background: none;
         border: none;
@@ -78,20 +78,20 @@
         box-sizing: border-box;
       }
       .birthday-text {
-        color: #FFF7FC;
+        color: #fff7fc;
         font-size: 0.875rem;
         letter-spacing: 0.2em;
         margin-bottom: 0.5rem;
       }
 
       .birthday-name {
-        color: #FFF7FC;
+        color: #fff7fc;
         font-size: 2rem;
         letter-spacing: 0.2em;
         margin-bottom: 1rem;
       }
       h1 {
-        color: #FFF7FC;
+        color: #fff7fc;
         font-size: 10rem;
         text-align: center;
         line-height: 1.2;
@@ -105,7 +105,7 @@
         box-sizing: border-box;
       }
       .photo-card {
-        background: #FFF7FC;
+        background: #fff7fc;
         padding: 1rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
         margin-bottom: 1.5rem;
@@ -121,13 +121,13 @@
         object-fit: cover;
       }
       .photo-date {
-        color: #FF90BC;
+        color: #ff90bc;
         margin-top: 0.75rem;
         font-size: 1.125rem;
       }
       #showCardBtn {
-        background-color: #8B93FF;
-        color: #FFF7FC;
+        background-color: #8b93ff;
+        color: #fff7fc;
         font-weight: 700;
         border-radius: 0.5rem;
         width: 100%;
@@ -152,10 +152,10 @@
         pointer-events: auto;
       }
       #showCardBtn:hover {
-        background-color: #6E77FF;
+        background-color: #6e77ff;
       }
       footer {
-        color: #FFF7FC;
+        color: #fff7fc;
         text-align: center;
         font-size: 0.75rem;
         border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -181,7 +181,7 @@
         display: flex;
       }
       #popupCard > div {
-        background: #FFF7FC;
+        background: #fff7fc;
         border-radius: 0.75rem;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         padding: 2rem 2.5rem;
@@ -191,7 +191,7 @@
         font-family: "More Sugar", cursive;
         font-size: 1.5rem;
         font-weight: 700;
-        color: #FF90BC;
+        color: #ff90bc;
         position: relative;
         overflow: visible;
         white-space: normal;
@@ -226,7 +226,7 @@
       }
       #popupCard > div p::before,
       #popupCard > div p::after {
-        color: #FF90BC;
+        color: #ff90bc;
         font-size: 3rem;
         position: absolute;
         font-weight: 700;
@@ -241,13 +241,13 @@
       #popupCard > div p::before {
         content: "“";
         left: 0.3rem;
-        top: 0.3rem;
+        top: 0.5rem;
         transform: translate(-50%, -50%);
       }
       #popupCard > div p::after {
         content: "”";
         right: 0.3rem;
-        top: 0.5rem;
+        top: 0.3rem;
         top: auto;
         transform: translate(50%, 50%);
       }
@@ -256,8 +256,8 @@
         opacity: 1;
       }
       #popupCard > div button {
-        background-color: #8B93FF;
-        color: #FFF7FC;
+        background-color: #8b93ff;
+        color: #fff7fc;
         font-weight: 700;
         border-radius: 0.5rem;
         padding: 0.75rem 2rem;
@@ -281,7 +281,7 @@
         pointer-events: auto;
       }
       #popupCard > div button:hover {
-        background-color: #6E77FF;
+        background-color: #6e77ff;
       }
       /* Dekorasi gambar pita merah muda */
       #popupCard > div .ribbon-img {
@@ -339,13 +339,13 @@
       }
 
       .playButton {
-        background-color: #FF72AB;
+        background-color: #ff72ab;
         border: none;
         border-radius: 50%;
         width: 60px;
         height: 60px;
         font-size: 30px;
-        color: #FFF7FC;
+        color: #fff7fc;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -359,7 +359,7 @@
       }
 
       .playButton:hover {
-        background-color: #FF90BC;
+        background-color: #ff90bc;
       }
     </style>
   </head>
@@ -379,12 +379,7 @@
       <p class="birthday-text" id="birthdayText"></p>
       <h1 id="birthdayName" class="birthday-name"></h1>
       <div class="photo-card">
-        <img
-          src="assets/yayaa.jpg"
-          alt="Foto yayaaa"
-          width="300"
-          height="300"
-        />
+        <img src="assets/yayaaa.jpg" alt="Foto yayaaa" />
         <p class="photo-date" id="photoDate"></p>
       </div>
       <button id="showCardBtn" aria-expanded="false"></button>
@@ -471,7 +466,7 @@
       const footerText = "By Azka";
       const popupTitleText = "Ucapan dari akuu";
       const popupContentText =
-        "Audilia Zoenita Rahman, atau yang biasa aku panggil yayaa lucu kan nama panggilan dia??. Dia udah aku anggap sebagai temen deket, atau mungkin bisa dibilang sahabat?? atau juga temen level 2 lol, tapi kalo dia nganggep aku apa #)&+$?f83xf8. Tapi yang pasti, kamu tuh udah jadi tempat cerita aku, meskipun kadang suka tiba-tiba ngilang _+ kamu tempat cerita paling asik dan ga pernah bosen buat dengerin cerita cerita ga jelas aku. Kadang cuma cerita receh, kadang yang serius atau bahkan nyari solusi, cerita apapun sama kamu semuanya selalu nyambung dan aku selalu excited kalau cerita sama kamu atau ngedengerin cerita cerita random dari kamuu. Sekarang kamu udah 17 tahun, udah makin dewasa aja ya (dikit sih, tapi tetep lucu wkwk), padahal rasanya baru kemaren kamu bocil esempe yang random dan seru. Aku seneng liat kamu sekarang tetep jadi diri kamu yang seru, kadang nyebelin, tapi tetep bikin kangen hahahaa, kangen itu bukan buat pacar aja kann??wkwk. Back to topic, sweet seventeen ya yayaa!!!, semoga kamu makin jadi versi terbaik dari diri kamu sendiri, semoga doa doa kamu satu persatu dikabulinn, dan semoga kamu bener bener bahagia, bukan cuma keliatan bahagia, jangan berubah jadi orang lain ya, tetap jadi yayaa yang aku kenal lucu, dan random. Kamu jangan pernah ngerasa sendirian, karena kamu ga sendiri. Happy birthday to you!!!!.";
+        "Selamat ulang tahun ke 17 yayaa. Sweet seventeen!!!!. Semoga satu per satu doa kamu naik ke langit dan pulang lagi sebagai hal hal indah yang kamu harapkan. Semoga kedepannya kamu bisa jadi pribadi yang lebih baik dari sekarang dan semoga kebahagiaan kamu nggak cuma terlihat di luar, tapi juga bisa dirasain banget sama kamu. Jangan sampe kamu jadi orang yang cuma bisa senyum di depan, sementara di dalam ada banyak hal yang ga terucap. Aku harap kamu tetep jadi yaya yang aku kenal dulu, jangan sampe berubah jadi orang lain meskipun waktu berubah, semoga yang asli nggak pernah hilang. Selamat ulang tahun ya yayaaa!!!";
       const okBtnText = "oke!";
 
       // Awalnya sembunyikan tombolnya
@@ -511,7 +506,6 @@
         await typeText(okBtn, okBtnText, 80);
         fadeUp(popupCard.querySelector("div"), 500, 30);
         showCardBtn.setAttribute("aria-expanded", "true");
-
       }
 
       function closePopup() {
